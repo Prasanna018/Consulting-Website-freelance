@@ -37,6 +37,8 @@ const Industries = () => {
 
             <div className=''>
 
+
+
             </div>
 
 

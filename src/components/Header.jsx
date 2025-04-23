@@ -68,7 +68,7 @@ function Header() {
                         <div key={id}>
                             <button
                                 onClick={() => handleDesktopClick(data.link)}
-                                className={`flex items-center text-white text-lg font-semibold gap-1 hover:underline focus:outline-none ${activeLink === data.link ? 'underline' : ''}`}
+                                className={`flex items-center text-white text-lg cursor-pointer font-semibold gap-1 hover:underline focus:outline-none ${activeLink === data.link ? 'underline' : ''}`}
                             >
                                 {data.name}
                                 {activeLink === data.link ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -82,7 +82,7 @@ function Header() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        className="md:hidden bg-gray-900 w-full"
+                        className="md:hidden bg-[#1e2223] w-full"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -108,7 +108,7 @@ function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="w-full"
+                className="w-full bg-[#1e2223]"
             >
                 <Outlet />
             </motion.div>

@@ -45,11 +45,11 @@ function WhatWeDo() {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="w-full bg-gray-800 p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl"
+            className="w-full bg-[#1e2223] p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl"
         >
             {/* Sidebar Navigation */}
             <div
-                className="w-full md:w-1/4 flex flex-col gap-6 bg-gray-900 p-6 rounded-lg"
+                className="w-full md:w-1/4 flex flex-col gap-6 bg-[#1e2223] p-6 rounded-lg"
             >
                 <h2 className="text-white text-xl font-bold mb-4 border-b border-gray-700 pb-2">
                     Navigation
@@ -104,7 +104,7 @@ function WhatWeDo() {
             </div>
 
             {/* Main Content Area */}
-            <div className="w-full md:w-3/4 bg-gray-700 p-6 rounded-lg text-white relative">
+            <div className="w-full md:w-3/4 bg-[#1e2223] p-6 rounded-lg text-white relative">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={location.pathname}

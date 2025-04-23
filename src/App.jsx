@@ -27,8 +27,8 @@ function App() {
       </div>
 
       {/* Scrollable Content on Top of Background Image */}
-      <div className="relative z-20 bg-white ">
-        <div className=" bg-opacity-90 rounded-lg  shadow-lg">
+      <div className="relative z-20 bg-white  h-[500px]">
+        <div className=" bg-opacity-90 ">
           <p className="text-lg font-semibold">Scrollable content starts here...</p>
 
           other content should be here
