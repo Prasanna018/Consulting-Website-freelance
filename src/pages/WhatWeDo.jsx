@@ -1,8 +1,6 @@
+import React from 'react'
 
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-
-function What() {
+function WhatWeDo() {
     return (
         <div className='text-black flex'>
             <div>
@@ -15,7 +13,7 @@ function What() {
                 <Outlet />
             </div>
         </div>
-    );
+    )
 }
 
-export default What;
+export default WhatWeDo
