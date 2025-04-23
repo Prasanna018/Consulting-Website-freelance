@@ -9,12 +9,23 @@ function App() {
   return (
     <div className=''>
       <div>
-        <img src='bgimg.jpg' className='h-1/2 w-full absolute object-cover z-50 opacity-70'></img>
+        <img src='bgimg.jpg' className='h-1/2 w-full absolute object-cover z-10 opacity-70 pointer-events-none' />
+
       </div>
       <div className='z-100 relative'>
         <Header></Header>
-        <Outlet ></Outlet>
+
+
+        <div>
+
+          <Outlet >
+
+
+          </Outlet>
+        </div>
+
       </div>
+
 
     </div>
   )
