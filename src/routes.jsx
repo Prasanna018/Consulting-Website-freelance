@@ -9,13 +9,11 @@ import App from "./App";
 import Demo from "./Demo";
 import WhatWeDo from "./pages/WhatWeDo";
 
-
-
-
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="what-we-do" element={<WhatWeDo></WhatWeDo>}>
+            <Route path="what-we-do" element={<WhatWeDo />}>
+                <Route index element={<Demo />} /> {/* Default route */}
                 <Route path="overview" element={<Demo />} />
             </Route>
         </Route>

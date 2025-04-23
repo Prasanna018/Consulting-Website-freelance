@@ -23,35 +23,36 @@ const routeLinks = [
         name: "Analytics Solutions",
         link: "analytics-solutions"
     }
-    // Optional: filter out empty or invalid entries
 ].filter(item => item?.id && item?.name && item?.link)
 
 function WhatWeDo() {
     return (
+
         <motion.div
-            initial={{ y: -50, opacity: 0 }}
+            initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className='text-black flex w-full'
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className=" w-full bg-gray-700  p-10  flex gap-8"
         >
-            <div className='flex flex-col w-1/4 gap-2'>
-                {
-                    routeLinks.map((data) => (
-                        <Link
-                            key={data.id}
-                            to={data.link}
-                            className='hover:underline text-blue-600'
-                        >
-                            {data.name}
-                        </Link>
-                    ))
-                }
+            {/* Sidebar Navigation */}
+            <div className="w-1/4 flex flex-col gap-4">
+                {routeLinks.map((data) => (
+                    <Link
+                        key={data.id}
+                        to={data.link}
+                        className="text-blue-600 hover:underline font-medium"
+                    >
+                        {data.name}
+                    </Link>
+                ))}
             </div>
 
-            <div className='w-3/4 pl-4'>
+            {/* Dynamic Outlet Content */}
+            <div className="w-3/4">
                 <Outlet />
             </div>
         </motion.div>
+
     )
 }
 
