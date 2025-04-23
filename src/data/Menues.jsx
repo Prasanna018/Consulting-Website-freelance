@@ -1,7 +1,8 @@
 export const Meneus = [
     {
         id: 1,
-        name: 'What We Do'
+        name: 'What We Do',
+        link: 'what-we-do'
     },
     {
         id: 2,
