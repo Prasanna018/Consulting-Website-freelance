@@ -9,23 +9,37 @@ function Header() {
     const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('');
+    const [bgColor, setBgColor] = useState('#1e2223'); // Default background color
 
     // Lock scroll when any link is active (not home)
-    useEffect(() => {
-        if (location.pathname !== '/') {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+    // useEffect(() => {
+    //     if (location.pathname !== '/') {
+    //         document.body.style.overflow = 'hidden';
+    //     } else {
+    //         document.body.style.overflow = 'auto';
+    //     }
 
-        return () => {
-            document.body.style.overflow = 'auto'; // Reset on unmount
-        };
-    }, [location.pathname]);
+    //     return () => {
+    //         document.body.style.overflow = 'auto'; // Reset on unmount
+    //     };
+    // }, [location.pathname]);
 
-    // Sync activeLink with current path
+    // Sync activeLink with current path and update background color
     useEffect(() => {
         setActiveLink(location.pathname);
+
+        // Set background color based on active menu
+        if (location.pathname === '/') {
+            setBgColor('#1e2223'); // Default color for home
+        } else {
+            // Find the menu item that matches the current path
+            const activeMenu = Meneus.find(menu => menu.link === location.pathname);
+            if (activeMenu && activeMenu.bgColor) {
+                setBgColor(activeMenu.bgColor);
+            } else {
+                setBgColor('#1e2223'); // Fallback color
+            }
+        }
     }, [location.pathname]);
 
     const handleMobileClick = (link) => {
@@ -82,7 +96,8 @@ function Header() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        className="md:hidden bg-[#1e2223] w-full"
+                        className="md:hidden w-full "
+                        style={{ backgroundColor: bgColor }}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -108,7 +123,8 @@ function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="w-full bg-[#1e2223]"
+                style={{ backgroundColor: bgColor }}
+                className="w-full overflow-auto"
             >
                 <Outlet />
             </motion.div>

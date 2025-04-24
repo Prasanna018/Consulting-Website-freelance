@@ -1,3 +1,5 @@
+import { line } from "framer-motion/client";
+
 export const Meneus = [
     {
         id: 1,
@@ -6,19 +8,13 @@ export const Meneus = [
     },
     {
         id: 2,
-        name: "Who We Are"
+        name: "Team",
+        link: "team"
     },
     {
         id: 3,
-        name: "Insights"
-    },
-    {
-        id: 4,
-        name: "Careers"
-    },
-    {
-        id: 5,
-        name: "Contact us"
+        name: "Contact",
+        link: 'contact'
     }
 ]
 

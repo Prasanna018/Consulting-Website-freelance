@@ -1,32 +1,55 @@
-import React from "react";
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-} from "react-router-dom";
-import App from "./App";
+import { createBrowserRouter } from 'react-router-dom';
+import App from './App';
+import WhatWeDo from './pages/WhatWeDo';
+import Industries from './pages/mainPages/Industries';
+import Demo from './Demo';
 
-import Demo from "./Demo";
-import WhatWeDo from "./pages/WhatWeDo";
-import Industries from "./pages/mainPages/Industries";
-import Banking from "./what-to-do/Banking";
+import Banking from './what-to-do/Banking'
+import Education from './what-to-do/Education';
+import LifeSciences from './what-to-do/LifeSciences';
+import Team from './pages/Team';
+import Contact from './pages/Contact';
+
+// Import other components as needed
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        children: [
+            // Default route
 
 
-
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/" element={<App />}>
-
-            <Route path="what-we-do" element={<WhatWeDo />}>
-                <Route index element={<Demo />} /> {/* Default route */}
-                <Route path="overview" element={<Demo />} />
-                <Route path="industries" element={<Industries />}>
-                    {/* Nested routes under 'industries' */}
-                </Route>
-                <Route path="industries/banking" element={<Banking />} />
-            </Route>
-        </Route>
-    )
-);
+            // What We Do section with nested routes
+            {
+                path: 'what-we-do',
+                element: <WhatWeDo />,
+                children: [
+                    { index: true, element: <Demo /> },
+                    { path: 'overview', element: <Demo /> },
+                    { path: 'industries', element: <Industries /> },
+                    // { path: 'technical-solutions', element: <TechnicalSolutions /> },
+                    // { path: 'analytics-solutions', element: <AnalyticsSolutions /> }
+                ]
+            },
+            {
+                path: "team",
+                element: <Team></Team>
+            },
+            {
+                path: 'contact',
+                element: <Contact></Contact>
+            }
+            ,
+            // Full screen Banking component route
+            { path: 'banking', element: <Banking /> },
+            { path: 'education', element: <Education></Education> },
+            { path: '/life-sciences', element: <LifeSciences></LifeSciences> }
+        ]
+    }
+]);
 
 export default router;
+
+
+
