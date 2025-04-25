@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, hover } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Industries from './mainPages/Industries';
 import Demo from '../Demo';
 import TechanicalSolution from './mainPages/TechanicalSolution';
 import AnalyticalSolution from './mainPages/AnalyticalSolution';
-
 
 const routeLinks = [
     {
@@ -41,33 +40,77 @@ function WhatWeDo() {
     const currentMainPath = pathSegments[pathSegments.indexOf('what-we-do') + 1] || '';
 
     const [hoveredLink, setHoveredLink] = useState(null);
+    const [activeContent, setActiveContent] = useState(null);
+
+    useEffect(() => {
+        if (currentMainPath === 'industries') {
+            setActiveContent(2);
+        } else if (currentMainPath === 'technical-solutions') {
+            setActiveContent(3);
+        } else if (currentMainPath === 'analytics-solutions') {
+            setActiveContent(4);
+        } else {
+            setActiveContent(1);
+        }
+    }, [currentMainPath]);
+
+    const handleLinkHover = (id) => {
+        setHoveredLink(id);
+        setActiveContent(id);
+    };
+
+    const handleLinkClick = (id) => {
+        setHoveredLink(null);
+        setActiveContent(id);
+    };
+
+    const renderContent = () => {
+        switch (activeContent) {
+            case 2:
+                return <Industries />;
+            case 3:
+                return <TechanicalSolution />;
+            case 4:
+                return <AnalyticalSolution />;
+            default:
+                return <Demo />;
+        }
+    };
 
     return (
         <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="w-full pt-20 bg-[#1e2223] p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl"
+            className="w-full min-h-screen pt-20 bg-[#1e2223] p-4 md:p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl overflow-hidden md:overflow-y-auto hide-scrollbar-mobile"
+            style={{
+                height: 'auto',
+                maxHeight: '100vh'
+            }}
         >
             {/* Sidebar Navigation */}
-            <div
-                className="w-full md:w-1/4 flex flex-col gap-6 bg-[#1e2223] p-6 rounded-lg"
-            >
+            <div className="w-full md:w-1/4 flex flex-col gap-6 bg-[#1e2223] p-4 md:p-6 rounded-lg">
                 <h2 className="text-white text-xl font-bold mb-4 border-b border-gray-700 pb-2">
                     Navigation
                 </h2>
 
                 {routeLinks.map((data) => {
-                    const isActive = currentMainPath === data.link;
+                    const isActive = activeContent === data.id ||
+                        (currentMainPath === data.link && !hoveredLink);
                     const isHovered = hoveredLink === data.id;
 
                     return (
                         <div
                             key={data.id}
                             className="relative"
-                            onMouseEnter={() => setHoveredLink(data.id)}
+                            onMouseEnter={() => handleLinkHover(data.id)}
+                            onMouseLeave={() => setHoveredLink(null)}
                         >
-                            <Link to={`/what-we-do/${data.link}`} className="block">
+                            <Link
+                                to={`/what-we-do/${data.link}`}
+                                className="block"
+                                onClick={() => handleLinkClick(data.id)}
+                            >
                                 <motion.div
                                     className={`flex items-center justify-between text-white p-3 rounded-md ${isActive || isHovered ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-all duration-300`}
                                     animate={{ x: isHovered ? 10 : 0 }}
@@ -77,10 +120,10 @@ function WhatWeDo() {
                                     <motion.div
                                         animate={{
                                             x: isHovered ? [0, 5, 0] : 0,
-                                            opacity: isHovered ? 1 : 0
+                                            opacity: isHovered || isActive ? 1 : 0
                                         }}
                                         transition={{
-                                            repeat: isHovered ? Infinity : 0,
+                                            repeat: isHovered || isActive ? Infinity : 0,
                                             duration: 1.5
                                         }}
                                     >
@@ -106,24 +149,19 @@ function WhatWeDo() {
             </div>
 
             {/* Main Content Area */}
-            <div className="w-full md:w-3/4 bg-[#1e2223] p-6 rounded-lg text-white relative">
+            <div className="w-full md:w-3/4 bg-[#1e2223] p-4 md:p-6 rounded-lg text-white relative overflow-y-auto hide-scrollbar-mobile">
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={location.pathname}
+                        key={activeContent}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
                         className="w-full"
                     >
-                        {hoveredLink === 2 ? <Industries /> : hoveredLink === 3 ? <TechanicalSolution></TechanicalSolution> : hoveredLink === 4 ? <AnalyticalSolution></AnalyticalSolution> : <Demo></Demo>
-
-                        }
+                        {renderContent()}
                     </motion.div>
                 </AnimatePresence>
-
-
-
             </div>
         </motion.div>
     );

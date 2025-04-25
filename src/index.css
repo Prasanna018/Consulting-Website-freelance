@@ -1,3 +1,17 @@
 @import "tailwindcss";
 
 /* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar only on mobile view */
+@media (max-width: 768px) {
+    .hide-scrollbar-mobile {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .hide-scrollbar-mobile::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+}
