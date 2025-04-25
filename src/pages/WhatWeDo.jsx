@@ -45,7 +45,7 @@ function WhatWeDo() {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="w-full bg-[#1e2223] p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl"
+            className="w-full pt-20 bg-[#1e2223] p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl"
         >
             {/* Sidebar Navigation */}
             <div

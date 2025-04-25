@@ -9,6 +9,14 @@ import Education from './what-to-do/Education';
 import LifeSciences from './what-to-do/LifeSciences';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
+import EngergyUtilities from './what-to-do/EnergyUtilities';
+import Manufacturing from './what-to-do/Manufacturing';
+import Distribution from './what-to-do/Distribution';
+import Healthcare from './what-to-do/Healthcare';
+import Retail from './what-to-do/Retail';
+import MediaAndInformation from './what-to-do/MediaandInformation';
+import Insurance from './what-to-do/Insurance';
+import TravelAndLogistics from './what-to-do/TravelandLogistics';
 
 // Import other components as needed
 
@@ -44,7 +52,16 @@ const router = createBrowserRouter([
             // Full screen Banking component route
             { path: 'banking', element: <Banking /> },
             { path: 'education', element: <Education></Education> },
-            { path: '/life-sciences', element: <LifeSciences></LifeSciences> }
+            { path: '/life-sciences', element: <LifeSciences></LifeSciences> },
+            { path: '/energy-and-utilities', element: <EngergyUtilities></EngergyUtilities> }
+            , { path: '/manufacturing', element: <Manufacturing></Manufacturing> },
+            { path: '/distribution', element: <Distribution></Distribution> },
+            { path: '/healthcare', element: <Healthcare></Healthcare> },
+            { path: '/retail', element: <Retail></Retail> },
+            { path: '/media-and-information', element: <MediaAndInformation></MediaAndInformation> },
+            { path: '/insurance', element: <Insurance></Insurance> },
+            { path: "/travel-and-logistics", element: <TravelAndLogistics></TravelAndLogistics> }
+
         ]
     }
 ]);

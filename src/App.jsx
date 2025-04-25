@@ -16,7 +16,7 @@ function App() {
     return (
       <>
         {/* Fixed Header */}
-        <div className="fixed top-0 w-full z-50">
+        <div className="">
           <Header />
         </div>
 
