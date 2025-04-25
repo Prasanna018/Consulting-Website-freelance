@@ -82,7 +82,7 @@ function WhatWeDo() {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="w-full min-h-screen pt-20 bg-[#1e2223] p-4 md:p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl overflow-hidden md:overflow-y-auto hide-scrollbar-mobile"
+            className="w-full min-h-screen pt-20 bg-[#1e2223] p-4 md:p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl overflow-hidden md:overflow-y-auto hide-scrollbar-mobile mt-20"
             style={{
                 height: 'auto',
                 maxHeight: '100vh'
