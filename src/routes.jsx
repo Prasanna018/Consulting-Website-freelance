@@ -28,7 +28,7 @@ import CloudServices from './what-to-do/Analytical-solution/CloudServices';
 import DataManagement from './what-to-do/Analytical-solution/DataManagement';
 import DataArchitecture from './what-to-do/Analytical-solution/DataArchitecture';
 import BIAnalytics from './what-to-do/Analytical-solution/BIAnalytics';
-import DataAnalyticsModernization from './what-to-do/Analytical-solution/DataAnalyticsModernization.JSX';
+import DataAnalyticsModernization from './what-to-do/Analytical-solution/DataAnalyticsModernization';
 import DataGovernance from './what-to-do/Analytical-solution/DataGovernance';
 import DataEngineeringIntegration from './what-to-do/Analytical-solution/DataEngineeringIntegration';
 import DataVisualizationReporting from './what-to-do/Analytical-solution/DataVisualizationReporting';
