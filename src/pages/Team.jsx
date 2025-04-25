@@ -1,4 +1,5 @@
 import React from 'react';
+// First, you'll need to import the images for the new team members
 import lw from '../assets/LynetteWuensch.jpg'
 import ww from '../assets/BillWuensch.jpg'
 import ja from '../assets/JeanieAlexander.jpg'
@@ -7,59 +8,117 @@ import sd from '../assets/stacey_updated2.png'
 import ne from '../assets/nancy_2025.png'
 import rf from '../assets/rachel_2025.png'
 import tg from '../assets/todd_website_updated.png'
+import weiHe from '../assets/Wei-He.jpg'
+import tylerHinkle from '../assets/Untitled-design20.png'
+import hannahMacKnight from '../assets/headshot_macknight1-e1625236860918.jpg'
+
+import meganMcConville from '../assets/megan.png'
+import chrisWarring from '../assets/chris_website_updated.png'
+import charlesSmith from '../assets/charles_website_updated.png'
+import alanSimpson from '../assets/alan_simpson.png'
+import amandaPoncy from '../assets/amanda_2025.png'
+const teamMembers = [
+    {
+        name: 'Lynette Wuensch, P.E., CFM, RSC, RS',
+        title: 'President',
+        image: lw,
+        id: 1,
+    },
+    {
+        name: 'William Wuensch, P.E., PTOE',
+        title: 'Principal / Transportation Engineer',
+        image: ww,
+        id: 2
+    },
+    {
+        name: 'Jeanie Alexander, P.E.',
+        title: 'Principal Engineer',
+        image: ja,
+        id: 3
+    },
+    {
+        name: 'Will Cockrell, AICP',
+        title: 'Principal Planner',
+        image: wc,
+        id: 4
+    },
+    {
+        name: 'Stacey Dahlstrom, AICP',
+        title: 'Senior Planner',
+        image: sd,
+        id: 5
+    },
+    {
+        name: 'Nancy Etro',
+        title: 'Planner',
+        image: ne,
+        id: 6
+    },
+    {
+        name: 'Rachel Fleisher',
+        title: 'GIS Planner',
+        image: rf,
+        id: 7
+    },
+    {
+        name: 'Todd Gordon, AICP, PMP',
+        title: 'Principal Planner',
+        image: tg,
+        id: 8
+    },
+    // New team members from the image
+    {
+        name: 'Wei He',
+        title: 'Senior Planner/Analyst',
+        image: weiHe,
+        id: 9
+    },
+    {
+        name: 'Tyler Hinkle, AICP',
+        title: 'Senior Planner',
+        image: tylerHinkle,
+        id: 10
+    },
+    {
+        name: 'Hannah MacKnight, EIT',
+        title: 'Engineering Analyst',
+        image: hannahMacKnight,
+        id: 11
+    },
+    {
+        name: 'Megan McConville',
+        title: 'Senior Planner',
+        image: meganMcConville,
+        id: 12
+    },
+    {
+        name: 'Amanda Poncy, AICP',
+        title: 'Principal Planner',
+        image: amandaPoncy,
+        id: 13
+    },
+    {
+        name: 'Alan Simpson, AICP',
+        title: 'Senior Planner',
+        image: alanSimpson,
+        id: 14
+    },
+    {
+        name: 'Charles Smith, P.E., PTOE',
+        title: 'Senior Engineer',
+        image: charlesSmith,
+        id: 15
+    },
+    {
+        name: 'Chris Warring',
+        title: 'Planner',
+        image: chrisWarring,
+        id: 16
+    }
+];
 
 const Team = () => {
-    const teamMembers = [
-        {
-            name: 'Lynette Wuensch, P.E., CFM, RSC, RS',
-            title: 'President',
-            image: lw,
-            id: 1,
 
-        },
-        {
-            name: 'William Wuensch, P.E., PTOE',
-            title: 'Principal / Transportation Engineer',
-            image: ww,
-            id: 2
-        },
-        {
-            name: 'Jeanie Alexander, P.E.',
-            title: 'Principal Engineer',
-            image: ja,
-            id: 3
-        },
-        {
-            name: 'Will Cockrell, AICP',
-            title: 'Principal Planner',
-            image: wc,
-            id: 4
-        },
-        {
-            name: 'Stacey Dahlstrom, AICP',
-            title: 'Senior Planner',
-            image: sd,
-            id: 5
-        },
-        {
-            name: 'Nancy Etro',
-            title: 'Planner',
-            image: ne,
-            id: 6
-        },
-        {
-            name: 'Rachel Fleisher',
-            title: 'GIS Planner',
-            image: rf,
-            id: 7
-        },
-        {
-            name: 'Todd Gordon, AICP, PMP',
-            title: 'Principal Planner',
-            image: tg,
-            id: 8
-        }
-    ];
 
     return (
         <div
