@@ -1,53 +1,62 @@
 import React from 'react';
+import lw from '../assets/LynetteWuensch.jpg'
+import ww from '../assets/BillWuensch.jpg'
+import ja from '../assets/JeanieAlexander.jpg'
+import wc from '../assets/WillCockrell_Website.jpg'
+import sd from '../assets/stacey_updated2.png'
+import ne from '../assets/nancy_2025.png'
+import rf from '../assets/rachel_2025.png'
+import tg from '../assets/todd_website_updated.png'
 
 const Team = () => {
     const teamMembers = [
         {
             name: 'Lynette Wuensch, P.E., CFM, RSC, RS',
             title: 'President',
-            image: '/api/placeholder/200/250',
-            id: 1
+            image: lw,
+            id: 1,
+
         },
         {
             name: 'William Wuensch, P.E., PTOE',
             title: 'Principal / Transportation Engineer',
-            image: '/api/placeholder/200/250',
+            image: ww,
             id: 2
         },
         {
             name: 'Jeanie Alexander, P.E.',
             title: 'Principal Engineer',
-            image: '/api/placeholder/200/250',
+            image: ja,
             id: 3
         },
         {
             name: 'Will Cockrell, AICP',
             title: 'Principal Planner',
-            image: '/api/placeholder/200/250',
+            image: wc,
             id: 4
         },
         {
             name: 'Stacey Dahlstrom, AICP',
             title: 'Senior Planner',
-            image: '/api/placeholder/200/250',
+            image: sd,
             id: 5
         },
         {
             name: 'Nancy Etro',
             title: 'Planner',
-            image: '/api/placeholder/200/250',
+            image: ne,
             id: 6
         },
         {
             name: 'Rachel Fleisher',
             title: 'GIS Planner',
-            image: '/api/placeholder/200/250',
+            image: rf,
             id: 7
         },
         {
             name: 'Todd Gordon, AICP, PMP',
             title: 'Principal Planner',
-            image: '/api/placeholder/200/250',
+            image: tg,
             id: 8
         }
     ];
@@ -75,13 +84,13 @@ const Team = () => {
             <div className="container mx-auto px-4 py-8 pb-20 ">
                 <h1 className="text-3xl font-normal text-gray-600 mb-8">Our Team</h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
                     {teamMembers.map(member => (
-                        <div key={member.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col items-center pb-4">
+                        <div key={member.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col items-center pb-4 p-4">
                             <img
                                 src={member.image}
                                 alt={member.name}
-                                className="w-full h-64 object-cover object-center"
+                                className="w-full h-full object-cover object-center"
                             />
                             <div className="p-4 text-center">
                                 <h3 className="text-sm font-medium text-blue-800">{member.name}</h3>
