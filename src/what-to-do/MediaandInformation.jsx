@@ -25,8 +25,10 @@ function MediaAndInformation() {
 
                 <div className='p-4
                 '>
-                    <p className='text-lg'>We help manufacturers harness the power of data to drive efficiency, reduce waste, and optimize supply chain performance. Our team transforms production data, quality metrics, and operational logs into actionable insights that improve yield, minimize defects, and enhance on-time delivery. We develop comprehensive data strategies to integrate IoT sensors, robotics, and automation - creating smarter, more connected factories.
-                        From the shop floor to the executive suite, we build custom tools and dashboards that empower teams to make data-driven decisions. Whether it's optimizing production schedules, managing inventory, or implementing predictive maintenance, we deliver tailored solutions that address your most pressing challenges. Our AI and machine learning expertise helps manufacturers anticipate supply chain disruptions, reduce scrap rates, and continuously improve processes - turning operational data into a competitive advantage.
+                    <p className='text-lg'>We empower media companies and content creators to harness data for smarter storytelling, deeper engagement, and higher monetization. Our team transforms audience behavior, content performance, and advertising data into actionable strategies that boost reach, retention, and revenue—helping you create what resonates and monetize what works.
+                        We build unified data ecosystems that connect audience analytics, content metadata, and ad performance—giving you a complete view of what’s driving engagement and revenue. Our tools help creators and marketers optimize content production, fine-tune ad targeting, and personalize recommendations, while real-time dashboards track KPIs like watch time, churn rates, and CPMs. Whether you need to refine ad pricing, convert more subscribers, or predict viral trends, we deliver tailored solutions that move the needle.
+                        Through AI and NLP, we take content intelligence further: machine learning predicts what audiences will love, natural language processing helps scale content creation, and predictive models optimize ad inventory. From hyper-targeted recommendations to dynamic paywall strategies, we turn content data into competitive advantage—and clicks into lasting relationships.
+
 
 
                     </p>

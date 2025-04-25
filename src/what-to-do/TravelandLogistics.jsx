@@ -25,9 +25,9 @@ function TravelAndLogistics() {
 
                 <div className='p-4
                 '>
-                    <p className='text-lg'>We help manufacturers harness the power of data to drive efficiency, reduce waste, and optimize supply chain performance. Our team transforms production data, quality metrics, and operational logs into actionable insights that improve yield, minimize defects, and enhance on-time delivery. We develop comprehensive data strategies to integrate IoT sensors, robotics, and automation - creating smarter, more connected factories.
-                        From the shop floor to the executive suite, we build custom tools and dashboards that empower teams to make data-driven decisions. Whether it's optimizing production schedules, managing inventory, or implementing predictive maintenance, we deliver tailored solutions that address your most pressing challenges. Our AI and machine learning expertise helps manufacturers anticipate supply chain disruptions, reduce scrap rates, and continuously improve processes - turning operational data into a competitive advantage.
-
+                    <p className='text-lg'>We help transportation and logistics companies harness the power of data to optimize operations, reduce costs, and elevate customer experiences. Our team transforms route data, fleet telematics, and customer insights into actionable strategies that maximize efficiency while improving service quality—helping you stay competitive in dynamic markets.
+                        We build integrated data ecosystems that connect your transportation management systems, customer feedback, and booking platforms—providing end-to-end visibility across operations. Our AI-powered tools empower logistics teams to optimize routes in real time, allocate resources efficiently, and predict maintenance needs before breakdowns occur. Interactive dashboards track critical KPIs like on-time performance, fuel efficiency, and customer satisfaction, giving decision-makers the insights they need to act fast.
+                        Through advanced analytics and machine learning, we take transportation intelligence further: predictive models anticipate demand surges, dynamic pricing algorithms adjust to market conditions, and personalized recommendations enhance customer loyalty. From reducing empty miles to automating dispatch decisions, we turn logistics data into smoother operations and stronger margins.
 
                     </p>
                 </div>

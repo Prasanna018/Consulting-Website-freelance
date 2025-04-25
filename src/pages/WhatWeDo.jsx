@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, hover } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Industries from './mainPages/Industries';
 import Demo from '../Demo';
+import TechanicalSolution from './mainPages/TechanicalSolution';
+import AnalyticalSolution from './mainPages/AnalyticalSolution';
 
 
 const routeLinks = [
@@ -114,7 +116,9 @@ function WhatWeDo() {
                         transition={{ duration: 0.2 }}
                         className="w-full"
                     >
-                        {hoveredLink === 2 ? <Industries /> : <Demo />}
+                        {hoveredLink === 2 ? <Industries /> : hoveredLink === 3 ? <TechanicalSolution></TechanicalSolution> : hoveredLink === 4 ? <AnalyticalSolution></AnalyticalSolution> : <Demo></Demo>
+
+                        }
                     </motion.div>
                 </AnimatePresence>
 

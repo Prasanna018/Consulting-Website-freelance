@@ -9,47 +9,44 @@ function Header() {
     const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('');
-    const [bgColor, setBgColor] = useState('#1e2223'); // Default background color
+    const [bgColor, setBgColor] = useState('#1e2223');
 
-    // Lock scroll when any link is active (not home)
-    // useEffect(() => {
-    //     if (location.pathname !== '/') {
-    //         document.body.style.overflow = 'hidden';
-    //     } else {
-    //         document.body.style.overflow = 'auto';
-    //     }
-
-    //     return () => {
-    //         document.body.style.overflow = 'auto'; // Reset on unmount
-    //     };
-    // }, [location.pathname]);
-
-    // Sync activeLink with current path and update background color
     useEffect(() => {
-        setActiveLink(location.pathname);
+        // Check if the current path matches any menu item
+        const currentPath = location.pathname;
+        const isTeamPath = currentPath.includes('/team');
 
-        // Set background color based on active menu
-        if (location.pathname === '/') {
-            setBgColor('#1e2223'); // Default color for home
+        if (isTeamPath) {
+            // For team pages, set the active link to the team base path
+            setActiveLink('/team');
         } else {
-            // Find the menu item that matches the current path
-            const activeMenu = Meneus.find(menu => menu.link === location.pathname);
+            // For other pages, set active link to the exact path
+            setActiveLink(currentPath);
+        }
+
+        // Set background color based on current path
+        if (currentPath === '/') {
+            setBgColor('#1e2223');
+        } else {
+            // Find menu item matching the current path or its parent path
+            const activeMenu = Meneus.find(menu =>
+                menu.link === currentPath ||
+                (isTeamPath && menu.link === '/team')
+            );
+
             if (activeMenu && activeMenu.bgColor) {
                 setBgColor(activeMenu.bgColor);
             } else {
-                setBgColor('#1e2223'); // Fallback color
+                setBgColor('#1e2223');
             }
         }
     }, [location.pathname]);
 
     const handleMobileClick = (link) => {
         setMobileMenuOpen(false);
-        setActiveLink(link);
-        navigate(link);
-    };
 
-    const handleDesktopClick = (link) => {
-        if (activeLink === link) {
+        // Check if we're clicking on already active link
+        if (activeLink === link || (location.pathname.includes('/team') && link === '/team')) {
             setActiveLink('');
             navigate('/');
         } else {
@@ -58,9 +55,22 @@ function Header() {
         }
     };
 
+    const handleDesktopClick = (link) => {
+        // Check if clicking on already active link (including team pages)
+        if ((activeLink === link) || (location.pathname.includes('/team') && link === '/team' && activeLink === '/team')) {
+            // If clicked the active link, go to homepage
+            setActiveLink('');
+            navigate('/');
+        } else {
+            // Otherwise navigate to the clicked link
+            setActiveLink(link);
+            navigate(link);
+        }
+    };
+
     return (
         <>
-            <nav className="w-full fixed top-0  z-50 bg-black flex justify-between items-center p-4 px-6 md:px-12">
+            <nav className="w-full fixed top-0 z-50 bg-black flex justify-between items-center p-4 px-6 md:px-12">
                 <div className="font-bold text-xl text-white">
                     <Link to="/" onClick={() => setActiveLink('')}>CONSULTANTS</Link>
                 </div>
@@ -78,17 +88,28 @@ function Header() {
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-6">
-                    {Meneus.map((data, id) => (
-                        <div key={id}>
-                            <button
-                                onClick={() => handleDesktopClick(data.link)}
-                                className={`flex items-center text-white text-lg cursor-pointer font-semibold gap-1 hover:underline focus:outline-none ${activeLink === data.link ? 'underline' : ''}`}
-                            >
-                                {data.name}
-                                {activeLink === data.link ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                            </button>
-                        </div>
-                    ))}
+                    {Meneus.map((data, id) => {
+                        // Check if this menu item is the team menu and we're on a team page
+                        const isTeamMenu = data.link === '/team';
+                        const isTeamPath = location.pathname.includes('/team');
+                        const isActive = isTeamMenu && isTeamPath ? true : activeLink === data.link;
+
+                        return (
+                            <div key={id}>
+                                <button
+                                    onClick={() => handleDesktopClick(data.link)}
+                                    className={`flex items-center text-white text-lg cursor-pointer font-semibold gap-1 hover:underline focus:outline-none ${isActive ? 'underline' : ''}`}
+                                >
+                                    {data.name}
+                                    {isActive ? (
+                                        <ChevronUp size={16} />
+                                    ) : (
+                                        <ChevronDown size={16} />
+                                    )}
+                                </button>
+                            </div>
+                        );
+                    })}
                 </div>
             </nav>
 
@@ -96,22 +117,45 @@ function Header() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        className="md:hidden w-full"
-                        style={{ backgroundColor: bgColor }}
+                        className="md:hidden fixed w-full mt-16 overflow-y-auto"
+                        style={{
+                            backgroundColor: bgColor,
+                            maxHeight: '70vh',
+                            msOverflowStyle: 'none',
+                            scrollbarWidth: 'none'
+                        }}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        {Meneus.map((data, id) => (
-                            <button
-                                key={id}
-                                onClick={() => handleMobileClick(data.link)}
-                                className={`w-full text-left text-white p-4 border-b border-gray-800 last:border-b-0 flex justify-between items-center ${location.pathname === data.link ? 'bg-gray-800' : ''}`}
-                            >
-                                {data.name}
-                            </button>
-                        ))}
+                        <style jsx>{`
+                            div::-webkit-scrollbar {
+                                display: none;
+                            }
+                        `}</style>
+
+                        {Meneus.map((data, id) => {
+                            // Check if this menu item is the team menu and we're on a team page
+                            const isTeamMenu = data.link === '/team';
+                            const isTeamPath = location.pathname.includes('/team');
+                            const isActive = isTeamMenu && isTeamPath ? true : location.pathname === data.link;
+
+                            return (
+                                <button
+                                    key={id}
+                                    onClick={() => handleMobileClick(data.link)}
+                                    className={`w-full text-left text-white p-4 border-b border-gray-800 last:border-b-0 flex justify-between items-center ${isActive ? 'bg-gray-800' : ''}`}
+                                >
+                                    <span>{data.name}</span>
+                                    {isActive ? (
+                                        <ChevronUp size={16} />
+                                    ) : (
+                                        <ChevronDown size={16} />
+                                    )}
+                                </button>
+                            );
+                        })}
                     </motion.div>
                 )}
             </AnimatePresence>

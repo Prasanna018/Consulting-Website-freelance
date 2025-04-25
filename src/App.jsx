@@ -9,34 +9,39 @@ function App() {
   const isEducationPage = location.pathname.includes('/education');
   const isLifeSciencesPage = location.pathname.includes('/life-sciences');
   const isTeamPage = location.pathname.includes('/team');
-  const isContact = location.pathname.includes('/contact')
+  const isContact = location.pathname.includes('/contact');
 
-  // Specialized pages (Banking, Education, Life Sciences) and Team page
-  if (isBankingPage || isEducationPage || isLifeSciencesPage || isTeamPage || isContact) {
+  const isSpecializedPage = isBankingPage || isEducationPage || isLifeSciencesPage || isTeamPage || isContact;
+
+  // For specialized pages (Banking, Education, etc.)
+  if (isSpecializedPage) {
     return (
       <>
         {/* Fixed Header */}
-        <div className="">
-          <Header />
-        </div>
+        {/* <div className="fixed top-0 left-0 w-full z-50"> */}
+        <Header />
+        {/* </div> */}
 
-        {/* Main content area with padding to account for fixed header */}
-        <div className="pt-16 w-full min-h-screen">
-          {/* <Outlet /> */}
-        </div>
+        {/* Scrollable content area with padding for the fixed header */}
+        <main className="pt-16 w-full bg-white">
+          {/* This is the key - the Outlet needs to be in a div that can scroll */}
+          <div className="overflow-y-auto">
+            {/* <Outlet /> */}
+          </div>
+        </main>
       </>
     );
   }
 
-  // Main homepage with video background
+  // For homepage with video background
   return (
     <>
       {/* Fixed Header */}
-      <div className="fixed top-0 w-full z-50">
+      <div className="fixed top-0 left-0 w-full z-50">
         <Header />
       </div>
 
-      {/* Fixed Background Video */}
+      {/* Fixed Background Video - ONLY on homepage */}
       <div className="fixed top-0 left-0 w-full h-full z-0">
         <video
           src="/bgvid.webm"
@@ -48,7 +53,7 @@ function App() {
         />
       </div>
 
-      {/* Hero section with appropriate z-index and padding for header */}
+      {/* Hero section */}
       <div className="relative z-10 h-screen flex items-center justify-center pt-16">
         <div className="text-white text-center w-full max-w-5xl px-4">
           <h1 className="text-5xl font-bold">Data Insights Consulting — Powering Decisions with Intelligence</h1>
@@ -59,7 +64,7 @@ function App() {
       </div>
 
       {/* Scrollable Content Section */}
-      <div className="relative z-20 h-full bg-white w-full">
+      <div className="relative z-20 bg-white w-full">
         <div className="container mx-auto py-8 px-4">
           <p className="text-lg font-semibold">Scrollable content starts here...</p>
           {/* <Outlet /> */}

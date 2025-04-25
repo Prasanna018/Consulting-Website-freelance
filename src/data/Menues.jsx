@@ -9,12 +9,12 @@ export const Meneus = [
     {
         id: 2,
         name: "Team",
-        link: "team"
+        link: "/team"
     },
     {
         id: 3,
         name: "Contact",
-        link: 'contact'
+        link: '/contact'
     }
 ]
 

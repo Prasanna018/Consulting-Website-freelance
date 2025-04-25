@@ -2,7 +2,7 @@ import React from 'react'
 
 function Contact() {
     return (
-        <div className="container mt-20  mx-auto px-4 py-8 pb-20 w-full max-w-5xl">
+        <div className="container mt-20 h-screen  mx-auto px-4 py-8 pb-20 w-full max-w-5xl">
             <h1 className="text-3xl font-normal text-white mb-8">Contact Us</h1>
 
             <div className='text-white'>
@@ -43,7 +43,7 @@ function Contact() {
                 </div>
 
                 <div className='w-full max-w-2xl'>
-                    <img src='/contact.jpg.crdownload'></img>
+                    <img src='/contact.jpg'></img>
                 </div>
             </div>
         </div>
