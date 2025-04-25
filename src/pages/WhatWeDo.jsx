@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, X, Compass, Navigation } from 'lucide-react';
 import Industries from './mainPages/Industries';
 import Demo from '../Demo';
 import TechanicalSolution from './mainPages/TechanicalSolution';
@@ -122,7 +122,7 @@ function WhatWeDo() {
                     onClick={toggleMobileNav}
                     className="text-white p-2 rounded-lg bg-gray-700"
                 >
-                    {isMobileNavOpen ? <X size={20} /> : <Menu size={20} />}
+                    {isMobileNavOpen ? <X size={20} /> : <Navigation size={20} />}
                 </button>
             </div>
 
