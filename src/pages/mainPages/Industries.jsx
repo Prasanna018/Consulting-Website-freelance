@@ -17,7 +17,7 @@ const industryList = [
     { id: 11, name: 'Travel and Logistics', link: '/travel-and-logistics' },
 ];
 
-function Industries({ selectedIndustryId }) {
+function Industries({ selectedIndustryId, hoverdlink }) {
     return (
         <div className="w-full text-white">
             <h1 className="text-3xl font-bold mb-6">Industries We Serve</h1>
@@ -33,7 +33,7 @@ function Industries({ selectedIndustryId }) {
                     >
                         <Link
                             to={industry.link}
-                            state={{ selectedIndustryId: industry.id }}
+                            state={{ selectedHover: hoverdlink }}
                             className="flex items-center text-white hover:underline"
                         >
                             {industry.name}

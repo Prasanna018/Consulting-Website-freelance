@@ -5,14 +5,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function Banking() {
     const navigate = useNavigate();
     const location = useLocation();
-    const selectedIndustryId = location.state?.selectedIndustryId;
-
+    const selectedHover = location.state?.selectedHover
+    console.log(selectedHover)
     return (
         <div className="bg-[#1e2223] text-white min-h-fit pb-20 mt-20">
             <div className="container mx-auto px-4 py-6">
                 <button
                     onClick={() => navigate('/what-we-do', {
-                        state: { selectedIndustryId }
+                        state: { selectedHover }
                     })}
                     className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
                 >

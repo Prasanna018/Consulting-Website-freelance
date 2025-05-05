@@ -64,7 +64,7 @@ const router = createBrowserRouter([
                 element: <Contact />
             },
 
-            // Move all routes inside the App component to ensure header is shown
+            // techanical solution routes
             { path: '/banking', element: <Banking /> },
             { path: 'education', element: <Education /> },
             { path: 'life-sciences', element: <LifeSciences /> },
@@ -81,6 +81,7 @@ const router = createBrowserRouter([
             { path: 'cloud', element: <Cloud /> },
             { path: 'data-analytics', element: <DataAnalytics /> },
             { path: 'network-solutions', element: <NetworkSolution /> },
+
             // analytical solution routes
             { path: 'data-strategy', element: <DataStrategy /> },
             { path: 'generative-ai', element: <GenerativeAI /> },

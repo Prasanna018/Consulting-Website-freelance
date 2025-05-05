@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, X, Compass, Navigation } from 'lucide-react';
+import { ArrowRight, X, Navigation } from 'lucide-react';
 import Industries from './mainPages/Industries';
 import Demo from '../Demo';
 import TechanicalSolution from './mainPages/TechanicalSolution';
@@ -38,10 +38,11 @@ function WhatWeDo() {
     const location = useLocation();
     const pathSegments = location.pathname.split('/');
     const currentMainPath = pathSegments[pathSegments.indexOf('what-we-do') + 1] || '';
+    const isIndustryRoute = pathSegments.includes('industries');
 
     const [hoveredLink, setHoveredLink] = useState(null);
-    const [activeContent, setActiveContent] = useState(null);
-    const [isMobileNavOpen, setMobileNavOpen] = useState(true);
+    const [activeContent, setActiveContent] = useState(1); // Default to Overview
+    const [isMobileNavOpen, setMobileNavOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     // Check if viewport is mobile
@@ -58,28 +59,40 @@ function WhatWeDo() {
         };
     }, []);
 
+    // Initialize activeContent based on route or localStorage
     useEffect(() => {
-        if (currentMainPath === 'industries') {
-            setActiveContent(2);
+        // First check the current route
+        let contentId = 1; // Default to Overview
+
+        if (isIndustryRoute) {
+            contentId = 2;
         } else if (currentMainPath === 'technical-solutions') {
-            setActiveContent(3);
+            contentId = 3;
         } else if (currentMainPath === 'analytics-solutions') {
-            setActiveContent(4);
+            contentId = 4;
         } else {
-            setActiveContent(1);
+            // If no specific route, check localStorage
+            const savedContent = localStorage.getItem('whatWeDoActiveContent');
+            if (savedContent) {
+                contentId = parseInt(savedContent);
+            }
         }
-    }, [currentMainPath]);
+
+        setActiveContent(contentId);
+        localStorage.setItem('whatWeDoActiveContent', contentId.toString());
+    }, [currentMainPath, isIndustryRoute]);
 
     const handleLinkHover = (id) => {
         setHoveredLink(id);
-        setActiveContent(id);
+        if (!isMobile) {
+            setActiveContent(id);
+            localStorage.setItem('whatWeDoActiveContent', id.toString());
+        }
     };
 
     const handleLinkClick = (id) => {
-        setHoveredLink(null);
         setActiveContent(id);
-
-        // Only collapse sidebar in mobile view
+        localStorage.setItem('whatWeDoActiveContent', id.toString());
         if (isMobile) {
             setMobileNavOpen(false);
         }
@@ -108,10 +121,6 @@ function WhatWeDo() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="w-full min-h-screen pt-20 bg-[#1e2223] p-4 md:p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl overflow-hidden md:overflow-y-auto hide-scrollbar-mobile mt-20"
-            style={{
-                height: 'auto',
-                maxHeight: '100vh'
-            }}
         >
             {/* Mobile Nav Toggle Button */}
             <div className="flex justify-between items-center mb-4 md:hidden">
@@ -141,8 +150,7 @@ function WhatWeDo() {
                         </h2>
 
                         {routeLinks.map((data) => {
-                            const isActive = activeContent === data.id ||
-                                (currentMainPath === data.link && !hoveredLink);
+                            const isActive = activeContent === data.id;
                             const isHovered = hoveredLink === data.id;
 
                             return (
@@ -151,14 +159,14 @@ function WhatWeDo() {
                                     className="relative"
                                     onMouseEnter={() => handleLinkHover(data.id)}
                                     onMouseLeave={() => setHoveredLink(null)}
+                                    onClick={() => handleLinkClick(data.id)}
                                 >
                                     <Link
                                         to={`/what-we-do/${data.link}`}
                                         className="block"
-                                        onClick={() => handleLinkClick(data.id)}
                                     >
                                         <motion.div
-                                            className={`flex items-center justify-between text-white p-3 rounded-md ${isActive || isHovered ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-all duration-300`}
+                                            className={`flex items-center justify-between text-white p-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-all duration-300`}
                                             animate={{ x: isHovered ? 10 : 0 }}
                                             transition={{ duration: 0.2 }}
                                         >
