@@ -5,71 +5,57 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
-  const isBankingPage = location.pathname.includes('/banking');
-  const isEducationPage = location.pathname.includes('/education');
-  const isLifeSciencesPage = location.pathname.includes('/life-sciences');
-  const isTeamPage = location.pathname.includes('/team');
-  const isContact = location.pathname.includes('/contact');
+  const isHomePage = location.pathname === '/';
 
-  const isSpecializedPage = isBankingPage || isEducationPage || isLifeSciencesPage || isTeamPage || isContact;
-
-  // For specialized pages (Banking, Education, etc.)
-  if (isSpecializedPage) {
-    return (
-      <>
-        {/* Fixed Header */}
-        {/* <div className="fixed top-0 left-0 w-full z-50"> */}
-        <Header />
-        {/* </div> */}
-
-        {/* Scrollable content area with padding for the fixed header */}
-        <main className="pt-16 w-full bg-white">
-          {/* This is the key - the Outlet needs to be in a div that can scroll */}
-          <div className="overflow-y-auto">
-            {/* <Outlet /> */}
-          </div>
-        </main>
-      </>
-    );
-  }
-
-  // For homepage with video background
   return (
     <>
-      {/* Fixed Header */}
+      {/* Fixed Header for all pages */}
       <div className="fixed top-0 left-0 w-full z-50">
         <Header />
       </div>
 
-      {/* Fixed Background Video - ONLY on homepage */}
-      <div className="fixed top-0 left-0 w-full h-full z-0">
-        <video
-          src="/bgvid.webm"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-80 pointer-events-none"
-        />
-      </div>
-
-      {/* Hero section */}
-      <div className="relative z-10 h-screen flex items-center justify-center pt-16">
-        <div className="text-white text-center w-full max-w-5xl px-4">
-          <h1 className="text-5xl font-bold">Data Insights Consulting — Powering Decisions with Intelligence</h1>
-          <div className="mt-6">
-            <p className="text-xl">We help you make smarter decisions by transforming complex data into clear, actionable insights.</p>
+      {/* Main content area with padding for the fixed header */}
+      <main className="pt-16 min-h-screen w-full">
+        {/* Video background only for homepage */}
+        {isHomePage && (
+          <div className="fixed top-0 left-0 w-full h-full z-0">
+            <video
+              src="/bgvid.webm"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-80 pointer-events-none"
+            />
           </div>
-        </div>
-      </div>
+        )}
 
-      {/* Scrollable Content Section */}
-      <div className="relative z-20 bg-white w-full">
-        <div className="container mx-auto py-8 px-4">
-          <p className="text-lg font-semibold">Scrollable content starts here...</p>
-          {/* <Outlet /> */}
-        </div>
-      </div>
+        {/* Hero section only for homepage */}
+        {isHomePage ? (
+          <>
+            <div className="relative z-10 h-screen flex items-center justify-center">
+              <div className="text-white text-center w-full max-w-5xl px-4">
+                <h1 className="text-5xl font-bold">Data Insights Consulting — Powering Decisions with Intelligence</h1>
+                <div className="mt-6">
+                  <p className="text-xl">We help you make smarter decisions by transforming complex data into clear, actionable insights.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Scrollable Content Section */}
+            <div className="relative z-20  w-full">
+              <div className="container mx-auto py-8 px-4">
+                <p className="text-lg font-semibold">Scrollable content starts here...</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          // For all other pages - no background, just content
+          <div className="relative bg-[#1e2223] z-10">
+            {/* <Outlet /> */}
+          </div>
+        )}
+      </main>
     </>
   );
 }

@@ -32,16 +32,16 @@ import DataAnalyticsModernization from './what-to-do/Analytical-solution/DataAna
 import DataGovernance from './what-to-do/Analytical-solution/DataGovernance';
 import DataEngineeringIntegration from './what-to-do/Analytical-solution/DataEngineeringIntegration';
 import DataVisualizationReporting from './what-to-do/Analytical-solution/DataVisualizationReporting';
-
-// Import other components as needed
+import TechanicalSolution from './pages/mainPages/TechanicalSolution';
+import AnalyticalSolution from './pages/mainPages/AnalyticalSolution';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
         children: [
-            // Default route
-
+            // Default route (if you have one)
+            // { index: true, element: <Home /> },
 
             // What We Do section with nested routes
             {
@@ -51,60 +51,49 @@ const router = createBrowserRouter([
                     { index: true, element: <Demo /> },
                     { path: 'overview', element: <Demo /> },
                     { path: 'industries', element: <Industries /> },
-                    // { path: 'technical-solutions', element: <TechnicalSolutions /> },
-                    // { path: 'analytics-solutions', element: <AnalyticsSolutions /> }
+                    { path: 'technical-solutions', element: <TechanicalSolution /> },
+                    { path: 'analytics-solutions', element: <AnalyticalSolution /> }
                 ]
             },
             {
                 path: "team",
-                element: <Team></Team>
+                element: <Team />
             },
             {
                 path: 'contact',
-                element: <Contact></Contact>
-            }
-            ,
-            // Full screen Banking component route
-            { path: 'banking', element: <Banking /> },
-            { path: 'education', element: <Education></Education> },
-            { path: '/life-sciences', element: <LifeSciences></LifeSciences> },
-            { path: '/energy-and-utilities', element: <EngergyUtilities></EngergyUtilities> }
-            , { path: '/manufacturing', element: <Manufacturing></Manufacturing> },
-            { path: '/distribution', element: <Distribution></Distribution> },
-            { path: '/healthcare', element: <Healthcare></Healthcare> },
-            { path: '/retail', element: <Retail></Retail> },
-            { path: '/media-and-information', element: <MediaAndInformation></MediaAndInformation> },
-            { path: '/insurance', element: <Insurance></Insurance> },
-            { path: "/travel-and-logistics", element: <TravelAndLogistics></TravelAndLogistics> },
-            { path: '/artificial-intelligence', element: <AI></AI> },
-            { path: '/cyber-security', element: <CyberSecurity></CyberSecurity> },
-            {
-                path: '/cloud', element: <Cloud></Cloud>
-
+                element: <Contact />
             },
-            { path: '/data-analytics', element: <DataAnalytics></DataAnalytics> },
-            { path: '/network-solutions', element: <NetworkSolution></NetworkSolution> }
-            ,
-            // analyctical solution routes here
-            { path: '/data-strategy', element: <DataStrategy></DataStrategy> },
-            { path: '/generative-ai', element: <GenerativeAI></GenerativeAI> },
-            { path: '/cloud-services', element: <CloudServices></CloudServices> },
-            { path: '/data-management', element: <DataManagement></DataManagement> },
-            { path: '/data-architecture', element: <DataArchitecture></DataArchitecture> },
-            { path: '/bi-analytics', element: <BIAnalytics></BIAnalytics> },
-            { path: '/data-analytics-modernization', element: <DataAnalyticsModernization></DataAnalyticsModernization> },
-            { path: '/data-governance', element: <DataGovernance></DataGovernance> },
-            { path: '/data-engineering-integration', element: <DataEngineeringIntegration></DataEngineeringIntegration> },
-            { path: '/data-visualization-reporting', element: <DataVisualizationReporting></DataVisualizationReporting> }
 
-
-
-
+            // Move all routes inside the App component to ensure header is shown
+            { path: '/banking', element: <Banking /> },
+            { path: 'education', element: <Education /> },
+            { path: 'life-sciences', element: <LifeSciences /> },
+            { path: 'energy-and-utilities', element: <EngergyUtilities /> },
+            { path: 'manufacturing', element: <Manufacturing /> },
+            { path: 'distribution', element: <Distribution /> },
+            { path: 'healthcare', element: <Healthcare /> },
+            { path: 'retail', element: <Retail /> },
+            { path: 'media-and-information', element: <MediaAndInformation /> },
+            { path: 'insurance', element: <Insurance /> },
+            { path: "travel-and-logistics", element: <TravelAndLogistics /> },
+            { path: 'artificial-intelligence', element: <AI /> },
+            { path: 'cyber-security', element: <CyberSecurity /> },
+            { path: 'cloud', element: <Cloud /> },
+            { path: 'data-analytics', element: <DataAnalytics /> },
+            { path: 'network-solutions', element: <NetworkSolution /> },
+            // analytical solution routes
+            { path: 'data-strategy', element: <DataStrategy /> },
+            { path: 'generative-ai', element: <GenerativeAI /> },
+            { path: 'cloud-services', element: <CloudServices /> },
+            { path: 'data-management', element: <DataManagement /> },
+            { path: 'data-architecture', element: <DataArchitecture /> },
+            { path: 'bi-analytics', element: <BIAnalytics /> },
+            { path: 'data-analytics-modernization', element: <DataAnalyticsModernization /> },
+            { path: 'data-governance', element: <DataGovernance /> },
+            { path: 'data-engineering-integration', element: <DataEngineeringIntegration /> },
+            { path: 'data-visualization-reporting', element: <DataVisualizationReporting /> }
         ]
     }
 ]);
 
 export default router;
-
-
-

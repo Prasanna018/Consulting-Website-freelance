@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
 const techIndustryList = [
     { id: 1, name: 'Artificial Intelligence', link: '/artificial-intelligence' },
     { id: 2, name: 'Cybersecurity', link: '/cyber-security' },
