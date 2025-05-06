@@ -70,7 +70,7 @@ function Header() {
 
     return (
         <>
-            <nav className="w-full fixed top-0 z-50 bg-black flex justify-between items-center p-4 px-6 md:px-12">
+            <nav className="w-full fixed  top-0 z-50 bg-black flex justify-between items-center p-6 px-6 md:px-12">
                 <div className="font-bold text-xl text-white">
                     <Link to="/" onClick={() => setActiveLink('')}>CONSULTANTS</Link>
                 </div>
