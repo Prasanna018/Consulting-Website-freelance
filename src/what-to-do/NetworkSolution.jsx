@@ -7,77 +7,105 @@ function NetworkSolution() {
     const navigate = useNavigate();
 
     return (
-        <div
-            className="min-h-screen w-full bg-[#1e2223] text-white overflow-y-auto"
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                msOverflowStyle: 'none',
-                scrollbarWidth: 'none'
-            }}
-        >
-            {/* Hide scrollbar for Chrome, Safari and Opera */}
-            <style jsx>{`
-                div::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
+        <div className="min-h-screen w-full bg-[#1e2223] text-white overflow-y-auto" style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none'
+        }}>
+            <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* Animate the content wrapper */}
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
+                transition={{ duration: 0.5 }}
                 className="container mx-auto px-4 pt-20 pb-20"
             >
                 {/* Back button */}
-                <button
-                    onClick={() => navigate('/what-we-do')}
-                    className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
+                <motion.button
+                    whileHover={{ x: -3 }}
+                    onClick={() => navigate('/what-we-do/technical-solutions', { replace: false })}
+                    className="flex cursor-pointer items-center gap-2 text-blue-400 mb-8 hover:text-blue-300 transition-colors"
                 >
-                    <ArrowLeft size={16} />
-                    Back to Technical Solution
-                </button>
+                    <ArrowLeft size={18} />
+                    <span>Back to Technical Solutions</span>
+                </motion.button>
 
-                <h1 className="text-4xl font-bold mb-8">Network Solution</h1>
+                {/* Main content */}
+                <div className="space-y-8">
+                    <motion.h1
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
+                    >
+                        Network Solution
+                    </motion.h1>
 
-                <div className="p-4 font-semibold">
-                    <p className="text-xl">
-                        We offer comprehensive network solutions consulting services designed to optimize, secure, and scale your organization's network infrastructure. In an increasingly connected world, a reliable, high-performance network is essential for business success. Our network experts help you design, implement, and manage networks that support business operations, enhance security, and ensure seamless connectivity.
-                        <br /><br />
-                        Our network solutions consulting services include:
-                    </p>
-                </div>
-
-                <div>
-                    <p className="p-2 text-lg">
-                        <b className="text-xl">Network Design & Architecture:</b> Designing and implementing custom network architectures that align with your business needs, ensuring scalability, reliability, and performance.
-
-                        <br /><br />
-                        <b className="text-xl">Network Security:</b> Protecting your network from cyber threats by implementing advanced security measures such as firewalls, intrusion detection systems, and encryption technologies.
-
-                        <br /><br />
-                        <b className="text-xl">Cloud Networking:</b> Assisting in the seamless integration of cloud services into your network infrastructure, optimizing performance and enhancing flexibility.
-
-                        <br /><br />
-                        <b className="text-xl">Network Optimization & Performance Management:</b> Analyzing network traffic and performance to identify bottlenecks and optimize bandwidth usage, ensuring fast and reliable connectivity.
-
-                        <br /><br />
-                        <b className="text-xl">Wireless & Remote Networking:</b> Designing and implementing secure, high-performance wireless networks for remote workforces, branch offices, or mobile environments.
-
-                        <br /><br />
-                        <b className="text-xl">Network Monitoring & Management:</b> Providing continuous network monitoring to detect issues before they affect your operations, coupled with management services to ensure uptime and reliability.
-
-                        <br /><br />
-                        <b className="text-xl">Disaster Recovery & Business Continuity:</b> Developing and implementing robust disaster recovery strategies to ensure minimal downtime in the event of network failure or disaster.
-
-                        <p className="text-lg pt-4">
-                            We work closely with your team to ensure your network infrastructure is efficient, secure, and adaptable to changing business requirements. Our goal is to help you maximize the potential of your network, reduce risks, and maintain high availability for all business operations.
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-xl leading-relaxed text-gray-300 space-y-6"
+                    >
+                        <p>
+                            We offer comprehensive network solutions designed to optimize, secure, and scale your organization’s infrastructure. In today’s connected world, seamless and secure networking is the foundation of business continuity.
                         </p>
-                    </p>
+
+                        <div className="bg-[#252a2b] rounded-xl p-6 border border-[#3a4042]">
+                            <h2 className="text-2xl font-semibold mb-4 text-blue-300">Our Network Solutions Services</h2>
+
+                            <div className="space-y-6">
+                                {[
+                                    {
+                                        title: 'Network Design & Architecture',
+                                        desc: 'Designing custom network architectures aligned with business goals for performance and scalability.'
+                                    },
+                                    {
+                                        title: 'Network Security',
+                                        desc: 'Implementing firewalls, intrusion detection systems, and encryption to guard against cyber threats.'
+                                    },
+                                    {
+                                        title: 'Cloud Networking',
+                                        desc: 'Seamlessly integrating cloud services into your infrastructure to enhance flexibility and speed.'
+                                    },
+                                    {
+                                        title: 'Performance Management',
+                                        desc: 'Monitoring and optimizing bandwidth and traffic flow for reliable connectivity.'
+                                    },
+                                    {
+                                        title: 'Wireless & Remote Access',
+                                        desc: 'Designing secure wireless networks for mobile teams, branch offices, and remote users.'
+                                    },
+                                    {
+                                        title: 'Monitoring & Management',
+                                        desc: 'Continuous network monitoring to detect and resolve issues before downtime occurs.'
+                                    },
+                                    {
+                                        title: 'Disaster Recovery & Continuity',
+                                        desc: 'Building resilient network strategies to recover quickly from outages or disasters.'
+                                    }
+                                ].map((item, index) => (
+                                    <div className="flex items-start" key={index}>
+                                        <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center mr-4 mt-1">
+                                            <span className="text-white font-bold">{index + 1}</span>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-medium text-blue-200">{item.title}</h3>
+                                            <p className="text-gray-300 mt-1">{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <p className="italic text-gray-300">
+                            Our expert team ensures your network is built for reliability, scalability, and future-proof performance—enabling your business to operate securely and efficiently across all environments.
+                        </p>
+                    </motion.div>
                 </div>
             </motion.div>
         </div>

@@ -1,119 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, Navigation } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Industries from './mainPages/Industries';
 import Demo from '../Demo';
 import TechanicalSolution from './mainPages/TechanicalSolution';
 import AnalyticalSolution from './mainPages/AnalyticalSolution';
 
 const routeLinks = [
-    {
-        id: 1,
-        name: 'Overview',
-        link: 'overview',
-        color: 'bg-blue-500'
-    },
-    {
-        id: 2,
-        name: 'Industries',
-        link: 'industries',
-        color: 'bg-purple-500'
-    },
-    {
-        id: 3,
-        name: 'Technical Solutions',
-        link: 'technical-solutions',
-        color: 'bg-green-500'
-    },
-    {
-        id: 4,
-        name: 'Analytics Solutions',
-        link: 'analytics-solutions',
-        color: 'bg-orange-500'
-    }
+    { name: 'Overview', link: 'overview', color: 'bg-blue-500' },
+    { name: 'Industries', link: 'industries', color: 'bg-purple-500' },
+    { name: 'Technical Solutions', link: 'technical-solutions', color: 'bg-green-500' },
+    { name: 'Analytics Solutions', link: 'analytics-solutions', color: 'bg-orange-500' }
 ];
 
 function WhatWeDo() {
     const location = useLocation();
-    const pathSegments = location.pathname.split('/');
-    const currentMainPath = pathSegments[pathSegments.indexOf('what-we-do') + 1] || '';
-    const isIndustryRoute = pathSegments.includes('industries');
+    const navigate = useNavigate();
+    const pathSegment = location.pathname.split('/').pop() || 'overview';
 
-    const [hoveredLink, setHoveredLink] = useState(null);
-    const [activeContent, setActiveContent] = useState(1); // Default to Overview
+    const [activeContent, setActiveContent] = useState(
+        routeLinks.some(item => item.link === pathSegment) ? pathSegment : 'overview'
+    );
     const [isMobileNavOpen, setMobileNavOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    // Check if viewport is mobile
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
         window.addEventListener('resize', checkMobile);
-
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-        };
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Initialize activeContent based on route or localStorage
     useEffect(() => {
-        // First check the current route
-        let contentId = 1; // Default to Overview
-
-        if (isIndustryRoute) {
-            contentId = 2;
-        } else if (currentMainPath === 'technical-solutions') {
-            contentId = 3;
-        } else if (currentMainPath === 'analytics-solutions') {
-            contentId = 4;
-        } else {
-            // If no specific route, check localStorage
-            const savedContent = localStorage.getItem('whatWeDoActiveContent');
-            if (savedContent) {
-                contentId = parseInt(savedContent);
-            }
+        if (activeContent !== pathSegment) {
+            navigate(`/what-we-do/${activeContent}`, { replace: true });
         }
+    }, [activeContent, navigate, pathSegment]);
 
-        setActiveContent(contentId);
-        localStorage.setItem('whatWeDoActiveContent', contentId.toString());
-    }, [currentMainPath, isIndustryRoute]);
+    const handleLinkClick = useCallback((link) => {
+        setActiveContent(link);
+        if (isMobile) setMobileNavOpen(false);
+    }, [isMobile]);
 
-    const handleLinkHover = (id) => {
-        setHoveredLink(id);
-        if (!isMobile) {
-            setActiveContent(id);
-            localStorage.setItem('whatWeDoActiveContent', id.toString());
-        }
-    };
+    const toggleMobileNav = useCallback(() => {
+        setMobileNavOpen(prev => !prev);
+    }, []);
 
-    const handleLinkClick = (id) => {
-        setActiveContent(id);
-        localStorage.setItem('whatWeDoActiveContent', id.toString());
-        if (isMobile) {
-            setMobileNavOpen(false);
-        }
-    };
-
-    const toggleMobileNav = () => {
-        setMobileNavOpen(!isMobileNavOpen);
-    };
-
-    const renderContent = () => {
+    const renderContent = useCallback(() => {
         switch (activeContent) {
-            case 2:
-                return <Industries />;
-            case 3:
-                return <TechanicalSolution />;
-            case 4:
-                return <AnalyticalSolution />;
+            case 'overview': return <Demo />;
+            case 'industries': return <Industries />;
+            case 'technical-solutions': return <TechanicalSolution />;
+            case 'analytics-solutions': return <AnalyticalSolution />;
             default:
-                return <Demo />;
+                return (
+                    <div className="text-center text-gray-400 text-lg py-20">
+                        Please select a section to view its content.
+                    </div>
+                );
         }
-    };
+    }, [activeContent]);
+
+    const currentTabName = routeLinks.find(item => item.link === activeContent)?.name || 'What We Do';
 
     return (
         <motion.div
@@ -122,21 +71,22 @@ function WhatWeDo() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="w-full min-h-screen pt-20 bg-[#1e2223] p-4 md:p-8 flex flex-col md:flex-row gap-8 rounded-lg shadow-xl overflow-hidden md:overflow-y-auto hide-scrollbar-mobile mt-20"
         >
-            {/* Mobile Nav Toggle Button */}
+            {/* Mobile Header */}
             <div className="flex justify-between items-center mb-4 md:hidden">
                 <h2 className="text-white text-xl font-bold">
-                    {routeLinks.find(item => item.id === activeContent)?.name || 'Overview'}
+                    {currentTabName}
                 </h2>
                 <button
                     onClick={toggleMobileNav}
                     className="text-white p-2 rounded-lg bg-gray-700"
+                    aria-label={isMobileNavOpen ? 'Close navigation' : 'Open navigation'}
                 >
                     {isMobileNavOpen ? <X size={20} /> : <Navigation size={20} />}
                 </button>
             </div>
 
-            {/* Sidebar Navigation */}
-            <AnimatePresence>
+            {/* Navigation */}
+            <AnimatePresence mode="wait">
                 {(!isMobile || isMobileNavOpen) && (
                     <motion.div
                         className="w-full md:w-1/4 flex flex-col gap-6 bg-[#1e2223] p-4 md:p-6 rounded-lg"
@@ -149,52 +99,43 @@ function WhatWeDo() {
                             Navigation
                         </h2>
 
-                        {routeLinks.map((data) => {
-                            const isActive = activeContent === data.id;
-                            const isHovered = hoveredLink === data.id;
-
+                        {routeLinks.map((item) => {
+                            const isActive = activeContent === item.link;
                             return (
                                 <div
-                                    key={data.id}
+                                    key={item.link}
                                     className="relative"
-                                    onMouseEnter={() => handleLinkHover(data.id)}
-                                    onMouseLeave={() => setHoveredLink(null)}
-                                    onClick={() => handleLinkClick(data.id)}
+                                    onClick={() => handleLinkClick(item.link)}
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-current={isActive ? 'page' : undefined}
                                 >
-                                    <Link
-                                        to={`/what-we-do/${data.link}`}
-                                        className="block"
+                                    <motion.div
+                                        className={`flex items-center justify-between text-white p-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-all duration-300 cursor-pointer`}
+                                        animate={{ x: isActive ? 10 : 0 }}
+                                        transition={{ duration: 0.2 }}
                                     >
-                                        <motion.div
-                                            className={`flex items-center justify-between text-white p-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'} transition-all duration-300`}
-                                            animate={{ x: isHovered ? 10 : 0 }}
-                                            transition={{ duration: 0.2 }}
-                                        >
-                                            <span className="font-medium">{data.name}</span>
+                                        <span className="font-medium">{item.name}</span>
+                                        {isActive && (
                                             <motion.div
                                                 animate={{
-                                                    x: isHovered ? [0, 5, 0] : 0,
-                                                    opacity: isHovered || isActive ? 1 : 0
+                                                    x: [0, 5, 0],
+                                                    opacity: 1
                                                 }}
                                                 transition={{
-                                                    repeat: isHovered || isActive ? Infinity : 0,
+                                                    repeat: Infinity,
                                                     duration: 1.5
                                                 }}
                                             >
                                                 <ArrowRight size={16} className="text-white" />
                                             </motion.div>
-                                        </motion.div>
-                                    </Link>
+                                        )}
+                                    </motion.div>
 
-                                    {/* Hover or selected indicator */}
                                     <motion.div
-                                        className={`h-1 ${data.color} absolute bottom-0 left-0 right-0 rounded-full pointer-events-none`}
+                                        className={`h-1 ${item.color} absolute bottom-0 left-0 right-0 rounded-full pointer-events-none`}
                                         initial={{ width: 0, opacity: 0 }}
-                                        animate={
-                                            isHovered || isActive
-                                                ? { width: '100%', opacity: 1 }
-                                                : { width: 0, opacity: 0 }
-                                        }
+                                        animate={isActive ? { width: '100%', opacity: 1 } : { width: 0, opacity: 0 }}
                                         transition={{ duration: 0.3 }}
                                     />
                                 </div>
@@ -204,7 +145,7 @@ function WhatWeDo() {
                 )}
             </AnimatePresence>
 
-            {/* Main Content Area */}
+            {/* Content */}
             <div className="w-full md:w-3/4 bg-[#1e2223] p-4 md:p-6 rounded-lg text-white relative overflow-y-auto hide-scrollbar-mobile">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -223,4 +164,4 @@ function WhatWeDo() {
     );
 }
 
-export default WhatWeDo;
+export default React.memo(WhatWeDo);

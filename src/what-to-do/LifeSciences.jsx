@@ -4,13 +4,22 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function LifeSciences() {
     const navigate = useNavigate();
+    const handleBackClick = () => {
+        navigate('/what-we-do', {
+            state: {
+                activeContent: 2, // Forces Industries section to be active
+                fromBanking: true // Additional context if needed
+            },
+            replace: false // Keep history entry for proper back navigation
+        });
+    };
 
     return (
-        <div className="bg-[#1e2223] text-white min-h-fit pb-20 mt-20">
+        <div className="bg-[#1e2223] h-screen text-white min-h-fit pb-20 mt-20">
             <div className="container mx-auto px-4 py-6">
                 {/* Back button */}
                 <button
-                    onClick={() => navigate('/what-we-do')}
+                    onClick={() => navigate('/what-we-do/industries', { replace: false })}
                     className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
                 >
                     <ArrowLeft size={16} />
@@ -23,7 +32,7 @@ function LifeSciences() {
 
 
 
-                <div className='p-4
+                <div className='border-2 rounded-2xl border-gray-300 p-5
                 '>
                     <p className='text-lg'>We partner with healthcare and biopharma leaders to transform data into strategic insights across R&D, regulatory compliance, clinical development, and commercialization. Our expertise includes analyzing clinical trial data, patient outcomes, and real-world evidence to drive decisive action—from optimizing trials to accelerating market access. We build scalable data architectures that unify clinical, manufacturing, and commercial operations, and develop tailored tools for critical decisions like R&D investments, supply chain planning, and pharmacovigilance monitoring.
                         <br></br>

@@ -48,7 +48,7 @@ const router = createBrowserRouter([
                 path: 'what-we-do',
                 element: <WhatWeDo />,
                 children: [
-                    { index: true, element: <Demo /> },
+                    // { index: true, element: <Demo /> },
                     { path: 'overview', element: <Demo /> },
                     { path: 'industries', element: <Industries /> },
                     { path: 'technical-solutions', element: <TechanicalSolution /> },

@@ -19,29 +19,37 @@ const industryList = [
 
 function Industries({ selectedIndustryId, hoverdlink }) {
     return (
-        <div className="w-full text-white">
-            <h1 className="text-3xl font-bold mb-6">Industries We Serve</h1>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
-                {industryList.map(industry => (
-                    <motion.div
-                        key={industry.id}
-                        className={`p-6 rounded-lg transition-all duration-300 ${selectedIndustryId === industry.id
-                            ? 'bg-blue-600'
-                            : 'bg-gray-800 hover:bg-gray-700'
-                            }`}
-                        whileHover={{ y: -5 }}
-                    >
-                        <Link
-                            to={industry.link}
-                            state={{ selectedHover: hoverdlink }}
-                            className="flex items-center text-white hover:underline"
+        <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+        >
+
+
+            <div className="w-full text-white">
+                <h1 className="text-3xl font-bold mb-6">Industries </h1>
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
+                    {industryList.map(industry => (
+                        <motion.div
+                            key={industry.id}
+                            className={`p-6 rounded-lg transition-all duration-300 ${selectedIndustryId === industry.id
+                                ? 'bg-blue-600'
+                                : 'bg-gray-800 hover:bg-gray-700'
+                                }`}
+                            whileHover={{ y: -5 }}
                         >
-                            {industry.name}
-                        </Link>
-                    </motion.div>
-                ))}
+                            <Link
+                                to={industry.link}
+                                state={{ selectedHover: hoverdlink }}
+                                className="flex items-center text-white hover:underline"
+                            >
+                                {industry.name}
+                            </Link>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

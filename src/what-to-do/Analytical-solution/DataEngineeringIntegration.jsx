@@ -32,7 +32,7 @@ function DataEngineeringIntegration() {
                 className="container mx-auto px-4 pt-20 pb-20"
             >
                 <button
-                    onClick={() => navigate('/what-we-do')}
+                    onClick={() => navigate('/what-we-do/analytics-solutions', { replace: false })}
                     className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
                 >
                     <ArrowLeft size={16} />

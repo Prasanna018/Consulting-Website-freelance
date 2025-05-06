@@ -7,71 +7,117 @@ function AI() {
     const navigate = useNavigate();
 
     return (
-        <div
-            className="min-h-screen w-full bg-[#1e2223] text-white overflow-y-auto"
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                msOverflowStyle: 'none',
-                scrollbarWidth: 'none'
-            }}
-        >
-            {/* Hide scrollbar for Chrome, Safari and Opera */}
-            <style jsx>{`
-                div::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
+        <div className="min-h-screen  w-full bg-[#1e2223] text-white overflow-y-auto" style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none'
+        }}>
+            {/* Hide scrollbar */}
+            <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* Animate the content wrapper */}
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
                 className="container mx-auto px-4 pt-20 pb-20"
             >
                 {/* Back button */}
-                <button
-                    onClick={() => navigate('/what-we-do')}
-                    className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
+                <motion.button
+                    whileHover={{ x: -3 }}
+                    onClick={() => navigate('/what-we-do/technical-solutions', { replace: false })}
+                    className="flex cursor-pointer items-center gap-2 text-blue-400 mb-8 hover:text-blue-300 transition-colors"
                 >
-                    <ArrowLeft size={16} />
-                    Back to Technical Solution
-                </button>
+                    <ArrowLeft size={18} />
+                    <span className="text-lg">Back to Technical Solutions</span>
+                </motion.button>
 
-                <h1 className="text-4xl font-bold mb-8">Artificial Intelligence</h1>
+                {/* Main content */}
+                <div className="space-y-8">
+                    <motion.h1
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 pb-2 border-b border-[#3a4042]"
+                    >
+                        Artificial Intelligence
+                    </motion.h1>
 
-                <div className="p-4 font-semibold">
-                    <p className="text-xl">
-                        We offer cutting-edge AI consulting services to help organizations unlock the full potential of artificial intelligence. Our expertise in AI enables businesses to optimize operations, enhance decision-making, and innovate across industries. By leveraging advanced machine learning, natural language processing, computer vision, and automation technologies, we empower companies to solve complex challenges and achieve tangible results.
-                        <br /><br />
-                        Our AI consulting services include:
-                    </p>
-                </div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-xl leading-relaxed text-gray-300"
+                    >
+                        We offer cutting-edge AI consulting services to help organizations unlock the full potential of artificial intelligence. Our expertise enables businesses to optimize operations, enhance decision-making, and innovate across industries.
+                    </motion.p>
 
-                <div>
-                    <p className="p-2 text-lg">
-                        <b className="text-xl">AI Strategy Development:</b> Crafting tailored AI strategies that align with your business objectives, driving long-term growth and efficiency.
+                    {/* Services section */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="space-y-6"
+                    >
+                        <h2 className="text-2xl font-semibold text-blue-300">Our AI Services</h2>
 
-                        <br /><br />
-                        <b className="text-xl">Machine Learning Models:</b> Designing and implementing custom machine learning models to solve specific business problems, such as predictive analytics, personalization, and forecasting.
+                        <div className="grid gap-5">
+                            {/* Service Item 1 */}
+                            <div className="p-5 bg-[#252a2b] rounded-lg border-l-4 border-blue-500 hover:bg-[#2a3032] transition-colors">
+                                <h3 className="text-xl font-medium text-blue-200 mb-2">AI Strategy Development</h3>
+                                <p className="text-gray-300 leading-relaxed">
+                                    Crafting tailored AI strategies that align with your business objectives, driving long-term growth and efficiency.
+                                </p>
+                            </div>
 
-                        <br /><br />
-                        <b className="text-xl">Natural Language Processing (NLP):</b> Applying NLP techniques to automate customer support, enhance content discovery, and streamline business processes.
+                            {/* Service Item 2 */}
+                            <div className="p-5 bg-[#252a2b] rounded-lg border-l-4 border-cyan-500 hover:bg-[#2a3032] transition-colors">
+                                <h3 className="text-xl font-medium text-cyan-200 mb-2">Machine Learning Models</h3>
+                                <p className="text-gray-300 leading-relaxed">
+                                    Designing and implementing custom machine learning models for predictive analytics, personalization, and forecasting.
+                                </p>
+                            </div>
 
-                        <br /><br />
-                        <b className="text-xl">Computer Vision:</b> Integrating computer vision technology for applications like image recognition, quality control, and surveillance.
+                            {/* Service Item 3 */}
+                            <div className="p-5 bg-[#252a2b] rounded-lg border-l-4 border-purple-500 hover:bg-[#2a3032] transition-colors">
+                                <h3 className="text-xl font-medium text-purple-200 mb-2">Natural Language Processing</h3>
+                                <p className="text-gray-300 leading-relaxed">
+                                    Applying NLP techniques to automate customer support, enhance content discovery, and streamline processes.
+                                </p>
+                            </div>
 
-                        <br /><br />
-                        <b className="text-xl">AI Integration & Deployment:</b> Ensuring seamless integration of AI solutions into your existing infrastructure, optimizing workflows, and improving user experience.
+                            {/* Service Item 4 */}
+                            <div className="p-5 bg-[#252a2b] rounded-lg border-l-4 border-green-500 hover:bg-[#2a3032] transition-colors">
+                                <h3 className="text-xl font-medium text-green-200 mb-2">Computer Vision</h3>
+                                <p className="text-gray-300 leading-relaxed">
+                                    Integrating computer vision technology for applications like image recognition, quality control, and surveillance.
+                                </p>
+                            </div>
 
-                        <p className="text-lg pt-4">
-                            We work alongside your teams to ensure that AI technologies are seamlessly integrated into your operations, driving both short-term success and long-term innovation. Our goal is to help you stay ahead of the competition by transforming data into actionable insights and empowering your business with AI-driven solutions.
+                            {/* Service Item 5 */}
+                            <div className="p-5 bg-[#252a2b] rounded-lg border-l-4 border-indigo-500 hover:bg-[#2a3032] transition-colors">
+                                <h3 className="text-xl font-medium text-indigo-200 mb-2">AI Integration & Deployment</h3>
+                                <p className="text-gray-300 leading-relaxed">
+                                    Ensuring seamless integration of AI solutions into your existing infrastructure and optimizing workflows.
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Closing paragraph */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="pt-4"
+                    >
+                        <p className="text-lg leading-relaxed text-gray-300 italic bg-[#252a2b] p-5 rounded-lg">
+                            We work alongside your teams to ensure AI technologies are seamlessly integrated into your operations, driving both short-term success and long-term innovation. Our goal is to help you stay ahead of the competition by transforming data into actionable insights.
                         </p>
-                    </p>
+                    </motion.div>
                 </div>
             </motion.div>
         </div>
