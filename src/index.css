@@ -15,3 +15,20 @@
         /* Chrome, Safari and Opera */
     }
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+body {
+    background-color: #1e2223;
+    /* Match your app background */
+
+}

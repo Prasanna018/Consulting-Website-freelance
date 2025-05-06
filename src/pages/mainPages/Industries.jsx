@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const industryList = [
@@ -17,31 +16,26 @@ const industryList = [
     { id: 11, name: 'Travel and Logistics', link: '/travel-and-logistics' },
 ];
 
-function Industries({ selectedIndustryId, hoverdlink }) {
+function Industries({ hoverdlink }) {
     return (
         <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
         >
-
-
             <div className="w-full text-white">
-                <h1 className="text-3xl font-bold mb-6">Industries </h1>
+                <h1 className="text-3xl font-bold mb-6">Industries</h1>
                 <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
                     {industryList.map(industry => (
                         <motion.div
                             key={industry.id}
-                            className={`p-6 rounded-lg transition-all duration-300 ${selectedIndustryId === industry.id
-                                ? 'bg-blue-600'
-                                : 'bg-gray-800 hover:bg-gray-700'
-                                }`}
+                            className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300"
                             whileHover={{ y: -5 }}
                         >
                             <Link
                                 to={industry.link}
                                 state={{ selectedHover: hoverdlink }}
-                                className="flex items-center text-white hover:underline"
+                                className="flex items-center text-blue-400 hover:underline"
                             >
                                 {industry.name}
                             </Link>

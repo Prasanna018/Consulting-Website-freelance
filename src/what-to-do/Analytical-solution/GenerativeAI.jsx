@@ -6,6 +6,41 @@ import { motion } from 'framer-motion';
 function GenerativeAI() {
     const navigate = useNavigate();
 
+    const services = [
+        {
+            title: 'Generative AI Strategy Development',
+            description: 'Crafting a tailored strategy to integrate generative AI into your business, aligning AI capabilities with your goals for innovation, efficiency, and growth.',
+        },
+        {
+            title: 'AI Model Development & Training',
+            description: 'Designing and building custom generative AI models that can create new content, simulate outcomes, or provide personalized recommendations, using deep learning, NLP, and other advanced techniques.',
+        },
+        {
+            title: 'Content Creation & Automation',
+            description: 'Utilizing generative AI for content generation (text, images, music, video) to automate creative processes, enhance marketing, and improve user engagement.',
+        },
+        {
+            title: 'Product & Design Innovation',
+            description: 'Leveraging generative AI to generate design prototypes, 3D models, or new product concepts for faster innovation and cost-effective design solutions.',
+        },
+        {
+            title: 'Natural Language Generation (NLG)',
+            description: 'Implementing NLG techniques to generate written content (e.g., reports, articles, customer communications), reducing manual effort while maintaining quality.',
+        },
+        {
+            title: 'Data Augmentation & Simulation',
+            description: 'Using generative models to create synthetic data for training ML models, addressing data scarcity and improving model accuracy.',
+        },
+        {
+            title: 'Ethical AI & Responsible Use',
+            description: 'Advising on ethical AI implementation, ensuring compliance with regulations and addressing bias, transparency, and societal impact.',
+        },
+        {
+            title: 'AI Integration & Scalability',
+            description: 'Ensuring seamless integration of generative AI into existing workflows and systems for enhanced scalability, performance, and efficiency.',
+        },
+    ];
+
     return (
         <div
             className="min-h-screen w-full bg-[#1e2223] text-white overflow-y-auto"
@@ -19,61 +54,65 @@ function GenerativeAI() {
                 scrollbarWidth: 'none'
             }}
         >
-            {/* Hide scrollbar for Chrome, Safari and Opera */}
-            <style jsx>{`
-                div::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
+            <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* Animate the content wrapper */}
             <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
                 className="container mx-auto px-4 pt-20 pb-20"
             >
-                {/* Back button */}
-                <button
+                <motion.button
+                    whileHover={{ x: -3 }}
                     onClick={() => navigate('/what-we-do/analytics-solutions', { replace: false })}
-                    className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
+                    className="flex cursor-pointer items-center gap-2 text-blue-400 mb-8 hover:text-blue-300 transition-colors"
                 >
-                    <ArrowLeft size={16} />
-                    Back to Analytical Solution
-                </button>
+                    <ArrowLeft size={18} />
+                    <span>Back to Analytical Solution</span>
+                </motion.button>
 
-                <h1 className="text-4xl font-bold mb-8">Generative AI</h1>
+                <motion.h1
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
+                >
+                    Generative AI
+                </motion.h1>
 
-                <div className="p-4 font-semibold">
-                    <p className="text-xl">
-                        We offer specialized generative AI consulting services to help organizations harness the power of AI to create innovative solutions, enhance creativity, and drive business transformation. Generative AI can automate content creation, optimize design processes, and improve decision-making by generating new ideas, models, and simulations based on existing data.
-                        <br /><br />
-                        Our generative AI consulting services include:
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-xl leading-relaxed text-gray-300 space-y-6 mt-8"
+                >
+                    <p>
+                        We offer specialized generative AI consulting services to help organizations harness the power of AI to create innovative solutions, enhance creativity, and drive business transformation.
+                        Generative AI can automate content creation, optimize design processes, and improve decision-making by generating new ideas, models, and simulations based on existing data.
                     </p>
-                </div>
 
-                <div>
-                    <p className="p-2 text-lg">
-                        <b className="text-xl">Generative AI Strategy Development:</b> Crafting a tailored strategy to integrate generative AI into your business, aligning AI capabilities with your goals for innovation, efficiency, and growth.
-                        <br /><br />
-                        <b className="text-xl">AI Model Development & Training:</b> Designing and building custom generative AI models that can create new content, simulate outcomes, or provide personalized recommendations, using deep learning, natural language processing, and other advanced AI techniques.
-                        <br /><br />
-                        <b className="text-xl">Content Creation & Automation:</b> Utilizing generative AI for content generation, such as text, images, music, and video, to automate creative processes, enhance marketing efforts, and improve user engagement.
-                        <br /><br />
-                        <b className="text-xl">Product & Design Innovation:</b> Leveraging generative AI to generate design prototypes, 3D models, or new product concepts, enabling faster innovation cycles and cost-effective design solutions.
-                        <br /><br />
-                        <b className="text-xl">Natural Language Generation (NLG):</b> Implementing NLG techniques to automatically generate written content for reports, articles, customer communications, and more, reducing manual effort while maintaining quality and relevance.
-                        <br /><br />
-                        <b className="text-xl">Data Augmentation & Simulation:</b> Using generative models to generate synthetic data for training machine learning models, improving accuracy, and addressing data scarcity challenges.
-                        <br /><br />
-                        <b className="text-xl">Ethical AI & Responsible Use:</b> Advising on the ethical implementation of generative AI, ensuring compliance with regulations and best practices while addressing potential biases and societal impacts.
-                        <br /><br />
-                        <b className="text-xl">AI Integration & Scalability:</b> Ensuring seamless integration of generative AI into your existing workflows, systems, and platforms to enhance scalability, performance, and operational efficiency.
-                        <p className="text-lg pt-4">
-                            We work closely with your team to ensure that generative AI is not only implemented effectively but also creates tangible value, driving innovation and improving business outcomes. Whether you're looking to automate creative processes, generate predictive models, or explore new possibilities, our generative AI consulting services empower you to unlock the full potential of AI.
-                        </p>
+                    <div className="bg-[#252a2b] rounded-xl p-6 border border-[#3a4042]">
+                        <h2 className="text-2xl font-semibold mb-4 text-blue-300">Our Generative AI Services Include:</h2>
+
+                        <div className="space-y-6">
+                            {services.map((service, idx) => (
+                                <div className="flex items-start" key={idx}>
+                                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center mr-4 mt-1">
+                                        <span className="text-white font-bold">{idx + 1}</span>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-medium text-blue-200">{service.title}</h3>
+                                        <p className="text-gray-300 mt-1">{service.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <p className="italic text-gray-300 mt-6">
+                        We work closely with your team to ensure generative AI creates tangible value, drives innovation, and improves business outcomes—whether automating creativity, generating insights, or exploring new frontiers.
                     </p>
-                </div>
+                </motion.div>
             </motion.div>
         </div>
     );

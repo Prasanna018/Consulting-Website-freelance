@@ -6,6 +6,49 @@ import { motion } from 'framer-motion';
 function CloudServices() {
     const navigate = useNavigate();
 
+    const services = [
+        {
+            title: 'Cloud Strategy & Roadmap Development',
+            description:
+                'Tailoring cloud strategies that align with business objectives for a smooth, cost-effective cloud journey.',
+        },
+        {
+            title: 'Cloud Migration & Implementation',
+            description:
+                'Executing seamless cloud migrations from on-premise infrastructure to the cloud with minimal downtime.',
+        },
+        {
+            title: 'Multi-Cloud & Hybrid Cloud Solutions',
+            description:
+                'Designing resilient and flexible environments using hybrid and multi-cloud architectures to optimize cost and performance.',
+        },
+        {
+            title: 'Cloud Infrastructure Optimization',
+            description:
+                'Improving cloud efficiency by optimizing resources, reducing cost, and ensuring scalability and performance.',
+        },
+        {
+            title: 'Cloud Security & Compliance',
+            description:
+                'Ensuring robust cloud security and compliance with industry standards like GDPR and HIPAA.',
+        },
+        {
+            title: 'Cloud-Native Application Development',
+            description:
+                'Building scalable, modern applications using microservices, containers, and serverless frameworks.',
+        },
+        {
+            title: 'Cloud Integration & Automation',
+            description:
+                'Integrating cloud services with your existing systems and automating processes to enhance business productivity.',
+        },
+        {
+            title: 'Ongoing Cloud Management & Monitoring',
+            description:
+                'Providing continuous monitoring, support, and optimization to ensure a high-performing cloud environment.',
+        },
+    ];
+
     return (
         <div
             className="min-h-screen w-full bg-[#1e2223] text-white overflow-y-auto"
@@ -16,64 +59,67 @@ function CloudServices() {
                 right: 0,
                 bottom: 0,
                 msOverflowStyle: 'none',
-                scrollbarWidth: 'none'
+                scrollbarWidth: 'none',
             }}
         >
-            {/* Hide scrollbar for Chrome, Safari, and Opera */}
-            <style jsx>{`
-                div::-webkit-scrollbar {
-                    display: none;
-                }
-            `}</style>
+            <style jsx>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* Animate the content wrapper */}
             <motion.div
-                initial={{ opacity: 0, y: -50 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
+                transition={{ duration: 0.5 }}
                 className="container mx-auto px-4 pt-20 pb-20"
             >
-                {/* Back button */}
-                <button
+                <motion.button
+                    whileHover={{ x: -3 }}
                     onClick={() => navigate('/what-we-do/analytics-solutions', { replace: false })}
-                    className="flex items-center gap-2 text-blue-400 mb-6 hover:underline cursor-pointer"
+                    className="flex cursor-pointer items-center gap-2 text-blue-400 mb-8 hover:text-blue-300 transition-colors"
                 >
-                    <ArrowLeft size={16} />
-                    Back to Analytical Solution
-                </button>
+                    <ArrowLeft size={18} />
+                    <span>Back to Analytical Solution</span>
+                </motion.button>
 
-                <h1 className="text-4xl font-bold mb-8">Cloud Services</h1>
+                <motion.h1
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
+                >
+                    Cloud Services
+                </motion.h1>
 
-                <div className="p-4 font-semibold">
-                    <p className="text-xl">
-                        At CloudServices, we provide expert cloud consulting to empower organizations in unlocking the full potential of cloud computing, driving flexibility, scalability, and operational efficiency. Our team is dedicated to guiding businesses through every stage of their cloud journey—from strategy development and migration to continuous management—ensuring seamless integration with your existing infrastructure and business processes.
-                        <br /><br />
-                        Our cloud consulting services include:
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-xl leading-relaxed text-gray-300 space-y-6 mt-8"
+                >
+                    <p>
+                        We provide expert cloud consulting services to help organizations embrace the cloud with confidence. Our solutions are designed to enhance flexibility, scalability, and operational efficiency—supporting every stage of your cloud journey.
                     </p>
-                </div>
 
-                <div>
-                    <p className="p-2 text-lg">
-                        <b className="text-xl">Cloud Strategy & Roadmap Development:</b> We create tailored cloud strategies that align with your business goals, ensuring a smooth adoption or migration process while optimizing costs and resources.
-                        <br /><br />
-                        <b className="text-xl">Cloud Migration & Implementation:</b> We assist with the seamless transition from on-premises infrastructure to the cloud, minimizing disruption and maximizing performance during migration.
-                        <br /><br />
-                        <b className="text-xl">Multi-Cloud & Hybrid Cloud Solutions:</b> We design and implement multi-cloud or hybrid cloud environments to deliver flexibility, resilience, and optimized resource allocation that meets both business and regulatory needs.
-                        <br /><br />
-                        <b className="text-xl">Cloud Infrastructure Optimization:</b> We help you optimize cloud resources and costs, ensuring that your cloud environment is efficient, secure, scalable, and meets your performance and availability requirements.
-                        <br /><br />
-                        <b className="text-xl">Cloud Security & Compliance:</b> We implement robust security measures and ensure compliance with industry regulations (such as GDPR, HIPAA) to protect your data and applications in the cloud.
-                        <br /><br />
-                        <b className="text-xl">Cloud-Native Application Development:</b> We develop and deploy cloud-native applications using microservices, containers, and serverless architectures to maximize scalability, flexibility, and speed.
-                        <br /><br />
-                        <b className="text-xl">Cloud Integration & Automation:</b> We integrate cloud services with existing systems and automate critical business processes, improving efficiency, reducing manual workloads, and enhancing productivity.
-                        <br /><br />
-                        <b className="text-xl">Ongoing Cloud Management & Monitoring:</b> We provide continuous cloud management, monitoring, and optimization to ensure high availability, security, and performance across your cloud infrastructure.
-                        <p className="text-lg pt-4">
-                            At CloudServices, we work closely with your team to ensure that your cloud strategy delivers both short-term value and long-term growth. By leveraging our expertise, you can drive digital transformation, reduce operational overhead, and maintain agility in today’s competitive market.
-                        </p>
+                    <div className="bg-[#252a2b] rounded-xl p-6 border border-[#3a4042]">
+                        <h2 className="text-2xl font-semibold mb-4 text-blue-300">Our Cloud Services Include:</h2>
+
+                        <div className="space-y-6">
+                            {services.map((service, idx) => (
+                                <div className="flex items-start" key={idx}>
+                                    <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center mr-4 mt-1">
+                                        <span className="text-white font-bold">{idx + 1}</span>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-medium text-blue-200">{service.title}</h3>
+                                        <p className="text-gray-300 mt-1">{service.description}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <p className="italic text-gray-300">
+                        By partnering with us, you gain a strategic advantage in today’s digital landscape—ensuring business agility, reduced operational overhead, and long-term cloud success.
                     </p>
-                </div>
+                </motion.div>
             </motion.div>
         </div>
     );
